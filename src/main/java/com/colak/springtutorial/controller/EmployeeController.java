@@ -1,6 +1,8 @@
 package com.colak.springtutorial.controller;
 
 import com.colak.springtutorial.dto.EmployeeDto;
+import com.colak.springtutorial.mapper.EmployeeMapper;
+import com.colak.springtutorial.model.Employee;
 import com.colak.springtutorial.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,7 +19,9 @@ public class EmployeeController {
 
     @PostMapping(value = "/employee")
     public ResponseEntity<EmployeeDto> createEmployee(@RequestBody EmployeeDto employeeDto) {
-        EmployeeDto createdEmployee = employeeService.createEmployee(employeeDto);
-        return new ResponseEntity<>(createdEmployee, HttpStatus.CREATED);
+        Employee employee = EmployeeMapper.mapToEmployee(employeeDto);
+        employee = employeeService.save(employee);
+        EmployeeDto savedEmployeeDto = EmployeeMapper.mapToEmployeeDto(employee);
+        return new ResponseEntity<>(savedEmployeeDto, HttpStatus.CREATED);
     }
 }
