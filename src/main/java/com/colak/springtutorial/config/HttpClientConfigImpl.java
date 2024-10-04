@@ -8,12 +8,11 @@ import org.apache.http.impl.nio.client.HttpAsyncClientBuilder;
 import org.apache.http.ssl.SSLContextBuilder;
 import org.apache.http.ssl.SSLContexts;
 import org.elasticsearch.client.RestClientBuilder;
-import org.springframework.context.annotation.Configuration;
 
 import javax.net.ssl.SSLContext;
 import java.io.File;
 
-@Configuration
+// @Configuration
 public class HttpClientConfigImpl implements RestClientBuilder.HttpClientConfigCallback {
 
     @Override

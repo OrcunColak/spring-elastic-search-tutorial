@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -21,9 +22,8 @@ public class EmployeeService {
         return employeeRepository.saveAll(employees);
     }
 
-    public Employee findById(String id) {
-        return employeeRepository.findById(id)
-                .orElse(null);
+    public Optional<Employee> findById(String id) {
+        return employeeRepository.findById(id);
     }
 
     public boolean existsById(String id) {
