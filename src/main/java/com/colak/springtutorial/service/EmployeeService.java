@@ -60,4 +60,14 @@ public class EmployeeService {
         employeeRepository.deleteAll();
     }
 
+    // Full-text search by name
+    public List<Employee> searchByName(String name) {
+        return employeeRepository.findByNameContaining(name);
+    }
+
+    // Exact match search by department
+    public List<Employee> searchByDepartment(String department) {
+        return employeeRepository.findByDepartment(department);
+    }
+
 }

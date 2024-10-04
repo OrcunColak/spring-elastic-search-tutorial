@@ -18,10 +18,11 @@ public class Employee {
     @Id
     private String id;
 
-    // Field will be analyzed as full-text data, allowing for full-text search capabilities.
+    // Full-text searchable name field
     @Field(type = FieldType.Text)
     private String name;
 
+    // Keyword for exact matching
     @Field(type = FieldType.Keyword)
     private String department;
 }

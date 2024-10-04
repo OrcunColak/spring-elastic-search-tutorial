@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -43,5 +45,19 @@ public class EmployeeController {
     @DeleteMapping("/{id}")
     public void deleteEmployee(@PathVariable String id) {
         employeeService.deleteById(id);
+    }
+
+    // http://localhost:8080/api/employees/search/name?name=John
+    // Full-text search by name
+    @GetMapping("/search/name")
+    public List<Employee> searchByName(@RequestParam String name) {
+        return employeeService.searchByName(name);
+    }
+
+    // http://localhost:8080/api/employees/search/department?department=Development
+    // Exact match search by department
+    @GetMapping("/search/department")
+    public List<Employee> searchByDepartment(@RequestParam String department) {
+        return employeeService.searchByDepartment(department);
     }
 }
